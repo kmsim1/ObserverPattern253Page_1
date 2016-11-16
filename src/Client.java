@@ -1,14 +1,16 @@
 
 public class Client {
 	public static void main(String[] args) {
-		ScoreRecord scoreRecord = new ScoreRecord();
+		ScoreRecord scoreRecord = new ScoreRecord(); //성적정보 new
 		
 		//3개까지의 정수만 출력함
-		DataSheetView dataSheetView = new DataSheetView(scoreRecord,5);
-		DataSortedView dataSortedView = new DataSortedView(scoreRecord);
+		Observer dataSheetView = new DataSheetView(scoreRecord,5);
+		Observer dataSorteView = new DataSortedView(scoreRecord);
+		Observer dataMinMaxView = new DataMinMaxView(scoreRecord);
 		
-		scoreRecord.setDataSheetView(dataSheetView);
-		scoreRecord.setDataSortedView(dataSortedView);
+		scoreRecord.addObserver(dataSheetView);
+		scoreRecord.addObserver(dataSorteView);
+		scoreRecord.addObserver(dataMinMaxView);
 		
 		for(int index = 1; index <= 5; index++) {
 			int score = index * 10;
